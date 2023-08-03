@@ -1,0 +1,69 @@
+<div class="card">
+  <h2
+    [ngStyle]="{
+      color: card.title.length < 5 ? 'blue' : 'red',
+      fontWeight: card.title.length < 7 ? 'normal' : 'bold'
+    }"
+  >
+    {{ index }} {{ card.title }}
+  </h2>
+  <!-- <p
+    class="text"
+    [ngClass]="{
+      blue: textColor === 'blue',
+      green: textColor === 'green',
+      red: textColor === 'red'
+    }"
+  >
+    {{ text }}
+  </p> -->
+  <!-- ---------- the same in a different way------------------- -->
+  <p
+    class="text"
+    [class.blue]="textColor === 'blue'"
+    [class.green]="textColor === 'green'"
+    [class.red]="textColor === 'red'"
+  >
+    {{ card.text }}
+  </p>
+
+  <div class="buttons">
+    <button (click)="textColor = 'red'">Set Red</button>
+    <button (click)="textColor = 'green'">Set Green</button>
+    <button (click)="textColor = 'blue'">Set Blue</button>
+  </div>
+
+  <div class="buttons">
+    <button (click)="changeTitle()">Change title</button>
+    <button (click)="card.title = 'Inline title'">Change title inline</button>
+  </div>
+
+  <div>
+    <strong>{{ cardDate | date : "dd MMMM yyyy HH:mm:ss" : "" : "ru" }}</strong>
+  </div>
+  <!-- <div>
+    <input type="text" (input)="inputHendler($event)" [value]="title" />
+     --------the same in a different way-------------------
+    <input
+      type="text"
+      #myInput
+      (input)="inputHendler(myInput.value)"
+      [value]="title"
+    />
+  </div> -->
+
+  <div>
+    <input
+      type="text"
+      [(ngModel)]="card.title"
+      (ngModelChange)="changeHendler()"
+    />
+  </div>
+</div>
+
+<!-- // ------------------------------Example add img in tamplate---------------------------------------------------------------
+ <p>{{ getInfo() }}</p>
+ <div>
+  <img [src]="imgUrl" />
+</div>
+<button [disabled]="disabled">Enable</button> -->
